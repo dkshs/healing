@@ -1,0 +1,24 @@
+{
+  "name": "healing",
+  "version": "1.0.0",
+  "author": "DKSHS",
+  "description": "Platform designed for telemedicine.",
+  "license": "MIT",
+  "nodemonConfig": {
+    "watch": [
+      "./healing"
+    ],
+    "ext": "html,css",
+    "ignore": "./healing/static/css/styles.css"
+  },
+  "scripts": {
+    "tailwind": "tailwindcss -i ./healing/tailwind.css -o ./healing/static/css/styles.css",
+    "tailwind:build": "npm run tailwind -- -m",
+    "tailwind:dev": "npm run tailwind -- -w",
+    "dev": "nodemon -x npm run tailwind:build"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "tailwindcss": "^3.4.3"
+  }
+}

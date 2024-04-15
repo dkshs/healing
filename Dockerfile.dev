@@ -1,0 +1,19 @@
+FROM dkshs/python_dev:latest
+
+ARG BUILD_ENVIRONMENT=local
+
+ENV BUILD_ENV ${BUILD_ENVIRONMENT}
+
+COPY ./requirements .
+RUN pip install -r ${BUILD_ENVIRONMENT}.txt
+
+COPY --chown=${USERNAME}:${USERNAME} ./.docker/start.sh /start
+RUN sed -i 's/\r$//g' /start
+RUN chmod +x /start
+
+COPY --chown=${USERNAME}:${USERNAME} . .
+RUN chown -R ${USERNAME}:${USERNAME} .
+
+USER ${USERNAME}
+
+CMD [ "/start" ]
