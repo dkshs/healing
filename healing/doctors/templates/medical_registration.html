@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Medical Registration{% endblock title %}
+
+{% block content %}
+  <div class="container my-10">
+    <div class="flex flex-col w-fit">
+      <p class="text-2xl font-bold text-start">
+        Hello, <span class="text-primary">{{ request.user.username }}.</span>
+      </p>
+      <p class="text-2xl font-bold mt-2 text-start">
+        We will carry out your legal medical registration.
+      </p>
+      <form
+        method="post"
+        enctype="multipart/form-data"
+        action="{% url "medical_registration" %}"
+        class="mt-8 w-full flex flex-col gap-6 max-w-xl"
+      >
+        {% csrf_token %}
+        <div class="flex flex-col justify-between gap-4 mb-2 sm:flex-row sm:mb-0">
+          <div class="flex flex-col gap-2 sm:w-[60%]">
+            <label for="crm" class="label">CRM:</label>
+            <input type="text" id="crm" name="crm" class="input" required />
+          </div>
+          <div class="flex flex-col gap-2 sm:w-[40%]">
+            <label for="mic" class="label">Medical identity card:</label>
+            <input type="file" id="mic" name="mic" class="input" required />
+          </div>
+        </div>
+        <div class="flex flex-col justify-between gap-4 mb-2 sm:flex-row sm:mb-0">
+          <div class="flex flex-col gap-2 sm:w-[60%]">
+            <label for="full_name" class="label">Full Name:</label>
+            <input type="text" id="full_name" name="full_name" class="input" required />
+          </div>
+          <div class="flex flex-col gap-2 sm:w-[40%]">
+            <label for="zip_code" class="label">ZIP Code:</label>
+            <input type="text" id="zip_code" name="zip_code" class="input" required />
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="street" class="label">Street:</label>
+          <input type="text" id="street" name="street" class="input" required />
+        </div>
+        <div class="flex flex-col justify-between gap-4 mb-2 sm:flex-row sm:mb-0">
+          <div class="flex flex-col gap-2 sm:w-[60%]">
+            <label for="neighborhood" class="label">Neighborhood:</label>
+            <input type="text" id="neighborhood" name="neighborhood" class="input" required />
+          </div>
+          <div class="flex flex-col gap-2 sm:w-[40%]">
+            <label for="number" class="label">Number:</label>
+            <input type="number" id="number" name="number" class="input" required />
+          </div>
+        </div>
+        <div class="flex flex-col justify-between gap-4 mb-2 sm:flex-row sm:mb-0">
+          <div class="flex flex-col gap-2 sm:w-[60%]">
+            <label for="rg" class="label">RG:</label>
+            <input type="file" id="rg" name="rg" class="input" required />
+          </div>
+          <div class="flex flex-col gap-2 sm:w-[40%]">
+            <label for="image" class="label">Profile Image:</label>
+            <input type="file" id="image" name="image" class="input" required />
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 w-full">
+          <label for="medical_specialty" class="label">Medical specialty:</label>
+          <select id="medical_specialty" name="medical_specialty" class="input">
+            <option value="">---------</option>
+            {% for specialty in specialties %}
+              <option value="{{ specialty.id }}">
+                {{ specialty.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="description" class="label">Description:</label>
+          <textarea id="description" name="description" class="textarea"></textarea>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="consultation_value" class="label">Consultation value:</label>
+          <input type="number" id="consultation_value" name="consultation_value" class="input" required />
+        </div>
+        <button type="submit" class="mt-2 button-primary w-fit">Register</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

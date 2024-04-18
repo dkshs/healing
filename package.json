@@ -8,7 +8,7 @@
     "watch": [
       "./healing"
     ],
-    "ext": "html,css",
+    "ext": "html,css,js",
     "ignore": "./healing/static/css/styles.css"
   },
   "scripts": {

@@ -5,6 +5,7 @@ Base settings to build other settings files upon.
 from pathlib import Path
 
 from decouple import config
+from django.contrib.messages import constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -57,7 +58,10 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "django_cleanup.apps.CleanupConfig",
 ]
-LOCAL_APPS = []
+LOCAL_APPS = [
+    "healing.users",
+    "healing.doctors",
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -144,3 +148,15 @@ SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
 X_FRAME_OPTIONS = "DENY"
+
+
+# Django messages
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-MESSAGE_STORAGE
+MESSAGE_TAGS = {
+    constants.DEBUG: "toast-debug",
+    constants.ERROR: "toast-error",
+    constants.WARNING: "toast-warning",
+    constants.SUCCESS: "toast-success",
+    constants.INFO: "toast-info",
+}

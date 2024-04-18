@@ -7,6 +7,8 @@ from django.views import defaults as default_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("auth/", include("healing.users.urls")),
+    path("doctors/", include("healing.doctors.urls")),
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]

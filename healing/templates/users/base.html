@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+  <div class="flex flex-col items-center max-w-xl my-16 mx-auto">
+    <div class="w-full flex items-center justify-center gap-3 border-b border-border pb-6">
+      <img
+        src="{% static "images/favicons/logo.png" %}"
+        alt="Healing Logo"
+        height="96px"
+        width="96px"
+        class="size-24"
+      />
+      <h1 class="text-4xl uppercase">Healing</h1>
+    </div>
+    <div class="w-full flex flex-col px-2 mt-8">
+      {% block form %}{% endblock form %}
+    </div>
+  </div>
+{% endblock body %}
